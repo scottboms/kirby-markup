@@ -19,22 +19,22 @@ A collection of kirbytags providing advanced options for semantic markup within 
 
 ## Usage
 
-To utilize the textareaButtons, you need to add them explicitly to your blueprint fields. For example:
+To utilize the buttons in textarea field, you need to add them explicitly to [your blueprints](https://getkirby.com/docs/reference/panel/fields/textarea). For example:
 
-`text:
-  label: Content
-	type: textarea
-	buttons:
-      - abbr
-      - cite
-      - dfn
-      - ins
-      - mark
-      - q
-      - s
-      - samp
-      - sub
-      - sup`
+    text:
+      label: Content
+      type: textarea
+      buttons:
+        - abbr
+        - cite
+        - dfn
+        - ins
+        - mark
+        - q
+        - s
+        - samp
+        - sub
+        - sup
 
 ### Optional Tag Attributes
 
