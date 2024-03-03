@@ -1,17 +1,21 @@
 {
-    "name": "scottboms/kirby-markup",
-    "description": "Kirby Semantic Markup Plugin",
-    "type": "kirby-plugin",
-    "version": "1.0.1",
-    "homepage": "https://github.com/scottboms/kirby-markup",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Scott Boms",
-            "email": "plugins@scottboms.com"
-        }
-    ],
-    "require": {
-        "getkirby/composer-installer": "^1.1"
+  "name": "scottboms/kirby-markup",
+  "description": "Kirby Semantic Markup Plugin",
+  "type": "kirby-plugin",
+  "version": "1.0.2",
+  "homepage": "https://github.com/scottboms/kirby-markup",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Scott Boms",
+      "email": "plugins@scottboms.com"
     }
+  ],
+  "support": {
+    "docs": "https://github.com/scottboms/kirby-markup/blob/main/README.md",
+    "source": "https://github.com/scottboms/kirby-markup"
+  },
+  "require": {
+    "getkirby/composer-installer": "^1.1"
+  }
 }

@@ -3,7 +3,7 @@
 /**
  * Kirby Semantic Markup Plugin
  *
- * @version 1.0.1
+ * @version 1.0.2
  * @author Scott Boms <plugins@scottboms.com>
  * @copyright Scott Boms <plugins@scottboms.com>
  * @link https://github.com/scottboms/kirby-markup
