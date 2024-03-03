@@ -2,7 +2,7 @@
   "name": "kirby-markup",
   "description": "Custom Kirbytags providing more advanced semantic markup in textareas",
   "author": "Scott Boms <scottboms@gmail.com>",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "kirby-plugin",
   "license": "MIT"
 }

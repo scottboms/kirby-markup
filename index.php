@@ -3,7 +3,7 @@
 /**
  * Kirby Semantic Markup Plugin
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @author Scott Boms <plugins@scottboms.com>
  * @copyright Scott Boms <plugins@scottboms.com>
  * @link https://github.com/scottboms/kirby-markup
@@ -30,9 +30,9 @@ Kirby::plugin('scottboms/kirby-markup', [
           $html .= '<abbr>' . $abbr . '</abbr>';
         } elseif($title !== '' && $class == '') {
           // title provided but no class
-          $html .= '<abbr title=">' . $title . '">' . $abbr . '</abbr>';
+          $html .= '<abbr title="' . $title . '">' . $abbr . '</abbr>';
         } else {
-          $html .= '<abbr title=">' . $title . '" class="' . $class . '">' . $abbr . '</abbr>';
+          $html .= '<abbr title="' . $title . '" class="' . $class . '">' . $abbr . '</abbr>';
         }
         return $html;
       },
@@ -75,9 +75,9 @@ Kirby::plugin('scottboms/kirby-markup', [
           $html .= '<dfn>' . $dfn . '</dfn>';
         } elseif($title !== '' && $class == '') {
           // title provided but no class
-          $html .= '<dfn title=">' . $title . '">' . $dfn . '</dfn>';
+          $html .= '<dfn title="' . $title . '">' . $dfn . '</dfn>';
         } else {
-          $html .= '<dfn title=">' . $title . '" class="' . $class . '">' . $dfn . '</dfn>';
+          $html .= '<dfn title="' . $title . '" class="' . $class . '">' . $dfn . '</dfn>';
         }
         return $html;
       }
@@ -97,7 +97,7 @@ Kirby::plugin('scottboms/kirby-markup', [
           // if no class attributes
           $html .= '<ins>' . $ins . '</ins>';
         } else {
-          $html .= '<ins class=">' . $class . '">' . $ins . '</ins>';
+          $html .= '<ins class="' . $class . '">' . $ins . '</ins>';
         }
         return $html;
       }
@@ -117,7 +117,7 @@ Kirby::plugin('scottboms/kirby-markup', [
           // if no class attributes
           $html .= '<mark>' . $mark . '</mark>';
         } else {
-          $html .= '<mark class=">' . $class . '">' . $mark . '</mark>';
+          $html .= '<mark class="' . $class . '">' . $mark . '</mark>';
         }
         return $html;
       }
@@ -137,7 +137,7 @@ Kirby::plugin('scottboms/kirby-markup', [
           // if no class attributes
           $html .= '<q>' . $q . '</q>';
         } else {
-          $html .= '<q class=">' . $class . '">' . $q . '</q>';
+          $html .= '<q class="' . $class . '">' . $q . '</q>';
         }
         return $html;
       }
@@ -157,7 +157,27 @@ Kirby::plugin('scottboms/kirby-markup', [
           // if no class attributes
           $html .= '<samp>' . $samp . '</samp>';
         } else {
-          $html .= '<samp class=">' . $class . '">' . $samp . '</samp>';
+          $html .= '<samp class="' . $class . '">' . $samp . '</samp>';
+        }
+        return $html;
+      }
+    ],
+
+    // Small Caps
+    'smallcaps' => [
+      'attr' => [
+        'class'
+      ],
+      'html' => function($tag) {
+        $html = '';
+        $smallcaps = $tag->smallcaps;
+        $class = $tag->class;
+
+        if($class == '') {
+          // if no class attributes
+          $html .= '<span class="markup__smallcaps">' . $smallcaps . '</span>';
+        } else {
+          $html .= '<span class="' . $class . '">' . $smallcaps . '</span>';
         }
         return $html;
       }
@@ -177,7 +197,7 @@ Kirby::plugin('scottboms/kirby-markup', [
           // if no class attributes
           $html .= '<s>' . $s . '</s>';
         } else {
-          $html .= '<s class=">' . $class . '">' . $s . '</s>';
+          $html .= '<s class="' . $class . '">' . $s . '</s>';
         }
         return $html;
       }
@@ -197,7 +217,7 @@ Kirby::plugin('scottboms/kirby-markup', [
           // if no class attributes
           $html .= '<sub>' . $sub . '</sub>';
         } else {
-          $html .= '<sub class=">' . $class . '">' . $sub . '</sub>';
+          $html .= '<sub class="' . $class . '">' . $sub . '</sub>';
         }
         return $html;
       }
@@ -217,7 +237,7 @@ Kirby::plugin('scottboms/kirby-markup', [
           // if no class attributes
           $html .= '<sup>' . $sup . '</sup>';
         } else {
-          $html .= '<sup class=">' . $class . '">' . $sup . '</sup>';
+          $html .= '<sup class="' . $class . '">' . $sup . '</sup>';
         }
         return $html;
       }

@@ -1,6 +1,6 @@
 # Semantic Markup Kirbytags
 
-A collection of kirbytags providing advanced options for semantic markup within textareas. Includes tags for: `abbr`, `cite`, `dfn`, `ins`, `mark`, `q`, `s`, `samp`, `sub`, `sup`. Each new tag includes a complementary textareaToolbar button.
+A collection of kirbytags providing advanced options for semantic markup within textareas. Includes tags for: `abbr`, `cite`, `dfn`, `ins`, `mark`, `q`, `s`, `samp`, `sub`, `sup` along with a special shortcut for handling `small caps`. Each new tag includes a complementary textareaToolbar button.
 
 ## Installation
 
@@ -25,6 +25,7 @@ To utilize the buttons in textarea field, you need to add them explicitly to [yo
       label: Content
       type: textarea
       buttons:
+        - smallcaps
         - abbr
         - cite
         - dfn
@@ -74,6 +75,9 @@ All tags provide an convenience `class` attribute and the `abbr` and `dfn` tags 
 ### [samp](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/samp)
 
 `(samp: Keyboard not found. Press F1 to continue. class: markup__samp)`
+
+### [smallcaps]
+`(smallcaps: porsche class: markup__sc title: Proof of Rich Spoiled Children Having Everything)`
 
 ### [sub](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/sub)
 
