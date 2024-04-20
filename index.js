@@ -91,5 +91,186 @@ panel.plugin("scottboms/kirby-markup", {
 			}
 		}
   },
+
+  // Marks for Writer field type
+  writerMarks: {
+    // abbreviation (abbr)
+    abbr: {
+      get button() {
+        return {
+          icon: 'abbr',
+          label: 'Abbreviation'
+        }
+      },
+
+      commands() {
+        return () => this.toggle();
+      },
+
+      get name() {
+        return 'abbr'
+      },
+
+      get schema() {
+        return {
+          parseDOM: [{ tag: 'abbr' }],
+          toDOM: () => ['abbr', 0]
+        };
+      }
+    },
+
+    // citation (citation)
+    // TODO: Output not working
+    cite: {
+      get button() {
+        return {
+          icon: 'cite',
+          label: 'Citation'
+        }
+      },
+
+      commands() {
+        return () => this.toggle();
+      },
+
+      get name() {
+        return 'cite'
+      },
+
+      get schema() {
+        return {
+          parseDOM: [{ tag: 'cite' }],
+          toDOM: () => ['cite', 0]
+        };
+      }
+    },
+
+    // dfn (definition)
+    // TODO: Output not working
+    dfn: {
+      get button() {
+        return {
+          icon: 'dfn',
+          label: 'Definition'
+        }
+      },
+
+      commands() {
+        return () => this.toggle();
+      },
+
+      get name() {
+        return 'dfn'
+      },
+
+      get schema() {
+        return {
+          parseDOM: [{ tag: 'dfn' }],
+          toDOM: () => ['dfn', 0]
+        };
+      }
+    },
+
+    // ins (insert)
+    ins: {
+      get button() {
+        return {
+          icon: 'ins',
+          label: 'Insert'
+        }
+      },
+
+      commands() {
+        return () => this.toggle();
+      },
+
+      get name() {
+        return 'ins'
+      },
+
+      get schema() {
+        return {
+          parseDOM: [{ tag: 'ins' }],
+          toDOM: () => ['ins', 0]
+        };
+      }
+    },
+
+    // q (quote)
+    // TODO: Output not working
+    q: {
+      get button() {
+        return {
+          icon: 'q',
+          label: 'Inline Quote'
+        }
+      },
+
+      commands() {
+        return () => this.toggle();
+      },
+
+      get name() {
+        return 'q'
+      },
+
+      get schema() {
+        return {
+          parseDOM: [{ tag: 'q' }, { style: 'text-decoration', getAttrs: (value) => value === 'underline' }],
+          toDOM: () => ['q', 0]
+        };
+      }
+    },
+    // samp (sample)
+    // TODO: Output not working
+    samp: {
+      get button() {
+        return {
+          icon: 'samp',
+          label: 'Sample'
+        }
+      },
+
+      commands() {
+        return () => this.toggle();
+      },
+
+      get name() {
+        return 'samp'
+      },
+
+      get schema() {
+        return {
+          parseDOM: [{ tag: 'samp' }],
+          toDOM: () => ['samp', 0]
+        };
+      }
+    },
+    // smallcaps (span only currently)
+    smallcaps: {
+      get button() {
+        return {
+          icon: 'smallcaps',
+          label: 'Small Caps'
+        }
+      },
+
+      commands() {
+        return () => this.toggle();
+      },
+
+      get name() {
+        return 'smallcaps'
+      },
+
+      get schema() {
+        return {
+          parseDOM: [{ tag: "span" }],
+          toDOM: () => ["span", 0]
+        };
+      }
+    },
+
+	}
 });
 

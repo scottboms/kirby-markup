@@ -1,0 +1,8 @@
+.k-writer .ProseMirror abbr {
+	font-weight: bold;
+}
+
+.k-writer .ProseMirror dfn,
+.k-writer .ProseMirror ins {
+  border-bottom: 1px dotted var(--color-grey-50);
+}

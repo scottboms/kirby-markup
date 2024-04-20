@@ -3,12 +3,14 @@
 /**
  * Kirby Semantic Markup Plugin
  *
- * @version 1.0.2
+ * @version 1.1.0
  * @author Scott Boms <plugins@scottboms.com>
  * @copyright Scott Boms <plugins@scottboms.com>
  * @link https://github.com/scottboms/kirby-markup
  * @license MIT
 **/
+
+//Kirby\Sane\Html::$allowedTags = ['abbr', 'cite', 'dfn', 'ins', 'mark', 'q', 's', 'samp', 'smallcaps'];
 
 Kirby::plugin('scottboms/kirby-markup', [
   'tags' => [
