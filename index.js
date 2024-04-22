@@ -120,7 +120,6 @@ panel.plugin("scottboms/kirby-markup", {
     },
 
     // citation (citation)
-    // TODO: Output not working
     cite: {
       get button() {
         return {
@@ -146,7 +145,6 @@ panel.plugin("scottboms/kirby-markup", {
     },
 
     // dfn (definition)
-    // TODO: Output not working
     dfn: {
       get button() {
         return {
@@ -196,8 +194,32 @@ panel.plugin("scottboms/kirby-markup", {
       }
     },
 
+    // mark (highlight)
+    mark: {
+      get button() {
+        return {
+          icon: 'mark',
+          label: 'Highlight'
+        }
+      },
+
+      commands() {
+        return () => this.toggle();
+      },
+
+      get name() {
+        return 'mark'
+      },
+
+      get schema() {
+        return {
+          parseDOM: [{ tag: 'mark' }],
+          toDOM: () => ['mark', 0]
+        };
+      }
+    },
+
     // q (quote)
-    // TODO: Output not working
     q: {
       get button() {
         return {
@@ -216,13 +238,12 @@ panel.plugin("scottboms/kirby-markup", {
 
       get schema() {
         return {
-          parseDOM: [{ tag: 'q' }, { style: 'text-decoration', getAttrs: (value) => value === 'underline' }],
+          parseDOM: [{ tag: 'q' }],
           toDOM: () => ['q', 0]
         };
       }
     },
     // samp (sample)
-    // TODO: Output not working
     samp: {
       get button() {
         return {

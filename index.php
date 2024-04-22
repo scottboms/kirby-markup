@@ -10,7 +10,15 @@
  * @license MIT
 **/
 
-//Kirby\Sane\Html::$allowedTags = ['abbr', 'cite', 'dfn', 'ins', 'mark', 'q', 's', 'samp', 'smallcaps'];
+Kirby\Sane\Html::$allowedTags['abbr'] = true;
+Kirby\Sane\Html::$allowedTags['cite'] = true;
+Kirby\Sane\Html::$allowedTags['dfn'] = true;
+Kirby\Sane\Html::$allowedTags['ins'] = true;
+Kirby\Sane\Html::$allowedTags['mark'] = true;
+Kirby\Sane\Html::$allowedTags['q'] = true;
+Kirby\Sane\Html::$allowedTags['s'] = true;
+Kirby\Sane\Html::$allowedTags['samp'] = true;
+Kirby\Sane\Html::$allowedTags['smallcaps'] = true;
 
 Kirby::plugin('scottboms/kirby-markup', [
   'tags' => [

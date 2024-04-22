@@ -1,6 +1,6 @@
 # Semantic Markup Kirbytags
 
-A collection of kirbytags providing advanced options for semantic markup within textareas. Includes tags for: `abbr`, `cite`, `dfn`, `ins`, `mark`, `q`, `s`, `samp`, `sub`, `sup` along with a special shortcut for handling `small caps`. Each new tag includes a complementary textareaToolbar button.
+A collection of kirbytags and Writer field marks providing advanced options for semantic markup within textareas. Includes tags for: `abbr`, `cite`, `dfn`, `ins`, `mark`, `q`, `s`, `samp`, `sub`, `sup` along with a special shortcut for handling `small caps`. Each tag includes a complementary textareaToolbar button and Writer field option.
 
 ## Installation
 
@@ -37,9 +37,24 @@ To utilize the buttons in textarea field, you need to add them explicitly to [yo
         - sub
         - sup
 
+    description:
+        type: writer
+        inline: true
+        marks:
+          - abbr
+          - cite
+          - dfn
+          - ins
+          - mark
+          - q
+          - s
+          - samp
+          - sub
+          - sup
+
 ### Optional Tag Attributes
 
-All tags provide an convenience `class` attribute and the `abbr` and `dfn` tags also provide an optional `title` attribute per HTML markup standards.
+All Textarea field tags provide an convenience `class` attribute and the `abbr` and `dfn` tags also provide an optional `title` attribute per HTML markup standards.
 
 * `class`: A CSS class/classes to append to the element [optional]
 * `title`: A title attribute for `abbr`, `dfn`, and `` [optional]
@@ -89,8 +104,13 @@ All tags provide an convenience `class` attribute and the `abbr` and `dfn` tags 
 
 ## Compatibility
 
-* Kirby 3.5+
 * Kirby 4+
+
+## To Do
+
+Please note that the Writer Marks are currently an initial implementation and are not at feature parity with the Textarea buttons, so I would consider these experimental at the moment.
+
+* Add ability to add attributes to Writer Marks (esp. small caps, abbr, cite, dfn)
 
 ## Disclaimer
 

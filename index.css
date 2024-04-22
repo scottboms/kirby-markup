@@ -2,7 +2,23 @@
 	font-weight: bold;
 }
 
-.k-writer .ProseMirror dfn,
-.k-writer .ProseMirror ins {
-  border-bottom: 1px dotted var(--color-grey-50);
+.k-writer .ProseMirror dfn {
+  font-family: monospace;
+  font-style: normal;
 }
+
+.k-writer .ProseMirror ins {
+  border-bottom: 1px solid #000;
+  padding: 0 .2rem;
+  text-decoration: none;
+}
+
+.k-writer .ProseMirror samp {
+  background: rgba(0,0,0,.1);
+  padding: 0 .2rem;
+}
+
+.k-writer .ProseMirror span {
+  font-variant: small-caps;
+}
+
