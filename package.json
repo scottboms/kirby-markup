@@ -1,8 +1,7 @@
 {
   "name": "kirby-markup",
   "description": "Custom Kirbytags providing more advanced semantic markup in textareas",
-  "author": "Scott Boms <scottboms@gmail.com>",
-  "version": "1.1.0",
+  "author": "Scott Boms <plugins@scottboms.com>",
   "type": "kirby-plugin",
   "license": "MIT"
 }
