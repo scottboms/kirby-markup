@@ -23,7 +23,7 @@ Kirby::plugin(
   info: [
     'homepage' => 'https://github.com/scottboms/kirby-markup'
   ],
-  version: '1.1.1',
+  version: '1.0.2',
   extends: [
     'tags' => [
       // Abbreviation
