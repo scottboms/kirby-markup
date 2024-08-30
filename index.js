@@ -154,17 +154,91 @@ panel.plugin("scottboms/kirby-markup", {
       },
 
       commands() {
-        return () => this.toggle();
+        return {
+          def: (event) => {
+            if (event.altKey || event.metaKey) {
+              return this.remove();
+            }
+            this.editor.emit('dfn', this.editor);
+          },
+          insertDfn: (attrs = {}) => {
+            const { selection } = this.editor.state;
+
+            // if no text is selected, we do nothing
+            if (selection.empty) {
+              //return null;
+            }
+
+            if (attrs.class) {
+              return this.update(attrs);
+            }
+          },
+          removeDfn: () => {
+            return this.remove();
+          },
+          toggleDfn: (attrs = {}) => {
+            if (attrs.class?.length > 0) {
+              this.editor.command('insertDfn', attrs);
+            } else {
+              this.editor.command('removeDfn');
+            }
+          }
+        }
+        //return () => this.toggle();
+      },
+
+      get defaults() {
+        return {
+          class: null
+        };
       },
 
       get name() {
         return 'dfn'
       },
 
+      plugins() {
+        return [
+          {
+            props: {
+              handleClass: (view, pos, event) => {
+                const attrs = this.editor.getMarkAttrs('dfn');
+
+                if(
+                  attrs.class &&
+                  event.altKey === true &&
+                  event.target instanceof HTMLAnchorElement
+                ) {
+                  event.stopPropagation();
+                  window.open(attrs.class);
+                }
+              }
+            }
+          }
+        ];
+      },
+
       get schema() {
         return {
-          parseDOM: [{ tag: 'dfn' }],
-          toDOM: () => ['dfn', 0]
+          attrs: {
+            class: {
+              default: null
+            },
+            title: {
+              default: null
+            }
+          },
+          inclusive: false,
+          parseDOM: [
+            {
+              tag: 'dfn' ,
+              getAttrs: (dom) => ({
+                class: dom.getAttribute('class'),
+                title: dom.getAttribute('title')
+              })
+            }
+          ],
+          toDOM: (node) => ['dfn', { ...node.attrs }, 0]
         };
       }
     },
