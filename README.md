@@ -19,7 +19,7 @@ A collection of kirbytags and Writer field marks providing advanced options for 
 
 ## Usage
 
-To utilize the buttons in textarea field, you need to add them explicitly to [your blueprints](https://getkirby.com/docs/reference/panel/fields/textarea). For example:
+The following textareaButton and writer field marks are included. To enable these in the panel, you need to add them explicitly to [your blueprints](https://getkirby.com/docs/reference/panel/fields/textarea). For example:
 
     text:
       label: Content
@@ -48,7 +48,7 @@ To utilize the buttons in textarea field, you need to add them explicitly to [yo
           - mark
           - q
           - s
-          - samp
+          - smallcaps
           - sub
           - sup
 
@@ -110,7 +110,8 @@ All Textarea field tags provide an convenience `class` attribute and the `abbr` 
 
 Please note that the Writer Marks are currently an initial implementation and are not at feature parity with the Textarea buttons, so I would consider these experimental at the moment.
 
-* Add ability to add attributes to Writer Marks (esp. small caps, abbr, cite, dfn)
+* [x] Add initial support for an inline class to the `smallcaps` mark for styling.
+* [ ] Add the ability to add attributes to Writer Marks (esp. small caps, abbr, cite, dfn).
 
 ## Disclaimer
 
