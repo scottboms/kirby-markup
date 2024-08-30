@@ -73,7 +73,7 @@ panel.plugin("scottboms/kirby-markup", {
       label: 'Small Caps',
       icon: 'smallcaps',
       click: function() {
-        this.command('toggle', '(smallcaps: ', ')');
+        this.command('toggle', '(smallcaps: ', ' class: )');
       }
     },
 		sub: {
@@ -243,30 +243,6 @@ panel.plugin("scottboms/kirby-markup", {
         };
       }
     },
-    // samp (sample)
-    samp: {
-      get button() {
-        return {
-          icon: 'samp',
-          label: 'Sample'
-        }
-      },
-
-      commands() {
-        return () => this.toggle();
-      },
-
-      get name() {
-        return 'samp'
-      },
-
-      get schema() {
-        return {
-          parseDOM: [{ tag: 'samp' }],
-          toDOM: () => ['samp', 0]
-        };
-      }
-    },
     // smallcaps (span only currently)
     smallcaps: {
       get button() {
@@ -286,8 +262,10 @@ panel.plugin("scottboms/kirby-markup", {
 
       get schema() {
         return {
-          parseDOM: [{ tag: "span" }],
-          toDOM: () => ["span", 0]
+          draggable: false,
+          priority: 60,
+          parseDOM: [{ tag: "span", getAttrs: (mark) => mark.classList.contains('smallcaps') ? {} : false, }],
+          toDOM: () => ["span", { class: 'smallcaps' }, 0]
         };
       }
     },
