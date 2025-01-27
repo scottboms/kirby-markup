@@ -18,12 +18,20 @@ Kirby\Sane\Html::$allowedTags['s'] = true;
 Kirby\Sane\Html::$allowedTags['samp'] = true;
 Kirby\Sane\Html::$allowedTags['smallcaps'] = true;
 
+use Composer\Semver\Semver;
+use Kirby\Cms\App as Kirby;
+
+// validate Kirby version
+if (Semver::satisfies(Kirby::version() ?? '0.0.0', '~4.0 || ~5.0') === false) {
+	throw new Exception('Kirby Remix Icons Plugin requires Kirby 4 or 5');
+}
+
 Kirby::plugin(
   name: 'scottboms/kirby-markup', 
   info: [
     'homepage' => 'https://github.com/scottboms/kirby-markup'
   ],
-  version: '1.0.2',
+  version: '1.0.3',
   extends: [
     'tags' => [
       // Abbreviation
