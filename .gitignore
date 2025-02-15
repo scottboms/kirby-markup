@@ -1,6 +1,7 @@
 # System files
 # ---------------------
 .DS_Store
+node_modules
 Icon
 
 # Lock Files

@@ -1,6 +1,6 @@
 # Semantic Markup Kirbytags
 
-A collection of kirbytags and Writer field marks providing advanced options for semantic markup within textareas. Includes tags for: `abbr`, `cite`, `dfn`, `ins`, `mark`, `q`, `s`, `samp`, `sub`, `sup` along with a special shortcut for handling `small caps`. Each tag includes a complementary textareaToolbar button and Writer field option.
+A collection of kirbytags for Textarea and Writer fields providing advanced options for semantic markup in the panel. Includes tags for: `abbr`, `cite`, `dfn`, `ins`, `mark`, `q`, `s`, `samp`, `sub`, `sup` along with a special shortcut for handling `small caps`.
 
 ## Installation
 
@@ -19,13 +19,12 @@ A collection of kirbytags and Writer field marks providing advanced options for 
 
 ## Usage
 
-The following textareaButton and writer field marks are included. To enable these in the panel, you need to add them explicitly to [your blueprints](https://getkirby.com/docs/reference/panel/fields/textarea). For example:
+The following Textarea and Writer Field marks are included. To enable these in the panel, you need to add them explicitly to [your blueprints](https://getkirby.com/docs/reference/panel/fields/textarea). For example:
 
     text:
       label: Content
       type: textarea
       buttons:
-        - smallcaps
         - abbr
         - cite
         - dfn
@@ -34,6 +33,7 @@ The following textareaButton and writer field marks are included. To enable thes
         - q
         - s
         - samp
+        - smallcaps
         - sub
         - sup
 
@@ -48,13 +48,14 @@ The following textareaButton and writer field marks are included. To enable thes
           - mark
           - q
           - s
+          - samp
           - smallcaps
           - sub
           - sup
 
 ### Optional Tag Attributes
 
-All Textarea field tags provide an convenience `class` attribute and the `abbr` and `dfn` tags also provide an optional `title` attribute per HTML markup standards.
+All Textarea tags provide a convenience `class` attribute. The `abbr` and `dfn` tags also provide an optional `title` attribute per HTML markup standards. The `q` tag provides both a `class` and `cite` attributes.
 
 * `class`: A CSS class/classes to append to the element [optional]
 * `title`: A title attribute for `abbr`, `dfn`, and `` [optional]
@@ -81,7 +82,7 @@ All Textarea field tags provide an convenience `class` attribute and the `abbr` 
 
 ### [q](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/q)
 
-`When Dave asks HAL to open the pod bay door, HAL answers: (q: I'm sorry, Dave. I'm afraid I can't do that.)`
+`When Dave asks HAL to open the pod bay door, HAL answers: (q: I'm sorry, Dave. I'm afraid I can't do that. cite: 2001: A Space Oddysey)`
 
 ### [s](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/s)
 
@@ -91,7 +92,7 @@ All Textarea field tags provide an convenience `class` attribute and the `abbr` 
 
 `(samp: Keyboard not found. Press F1 to continue. class: markup__samp)`
 
-### [smallcaps]
+### smallcaps
 `(smallcaps: porsche class: markup__sc title: Proof of Rich Spoiled Children Having Everything)`
 
 ### [sub](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/sub)
@@ -104,14 +105,8 @@ All Textarea field tags provide an convenience `class` attribute and the `abbr` 
 
 ## Compatibility
 
-* Kirby 4+
-
-## To Do
-
-Please note that the Writer Marks are currently an initial implementation and are not at feature parity with the Textarea buttons, so I would consider these experimental at the moment.
-
-* [x] Add initial support for an inline class to the `smallcaps` mark for styling.
-* [ ] Add the ability to add attributes to Writer Marks (esp. small caps, abbr, cite, dfn).
+* Kirby 4.x
+* Kirby 5.x
 
 ## Disclaimer
 

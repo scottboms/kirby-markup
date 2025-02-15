@@ -8,15 +8,17 @@
  * @license MIT
 **/
 
-Kirby\Sane\Html::$allowedTags['abbr'] = true;
-Kirby\Sane\Html::$allowedTags['cite'] = true;
-Kirby\Sane\Html::$allowedTags['dfn'] = true;
-Kirby\Sane\Html::$allowedTags['ins'] = true;
-Kirby\Sane\Html::$allowedTags['mark'] = true;
-Kirby\Sane\Html::$allowedTags['q'] = true;
-Kirby\Sane\Html::$allowedTags['s'] = true;
-Kirby\Sane\Html::$allowedTags['samp'] = true;
-Kirby\Sane\Html::$allowedTags['smallcaps'] = true;
+use Kirby\Sane\Html;
+
+Html::$allowedTags['abbr'] = ['class','title'];
+Html::$allowedTags['cite'] = true;
+Html::$allowedTags['dfn'] = ['class','title'];
+Html::$allowedTags['ins'] = true;
+Html::$allowedTags['mark'] = true;
+Html::$allowedTags['q'] = ['cite'];
+Html::$allowedTags['s'] = true;
+Html::$allowedTags['samp'] = ['class'];
+Html::$allowedTags['smallcaps'] = ['class','title'];
 
 use Composer\Semver\Semver;
 use Kirby\Cms\App as Kirby;
@@ -31,7 +33,7 @@ Kirby::plugin(
   info: [
     'homepage' => 'https://github.com/scottboms/kirby-markup'
   ],
-  version: '1.0.3',
+  version: '1.1.0',
   extends: [
     'tags' => [
       // Abbreviation
@@ -148,18 +150,23 @@ Kirby::plugin(
       // Inline Quote
       'q' => [
         'attr' => [
-          'class'
+          'class',
+          'cite'
         ],
         'html' => function($tag) {
           $html = '';
           $q = $tag->q;
           $class = $tag->class;
+          $cite = $tag->cite;
 
-          if($class == '') {
-            // if no class attributes
+          if($class == '' && $cite == '') {
+            // if no class or cite attributes
             $html .= '<q>' . $q . '</q>';
-          } else {
+          } elseif($class !== '' && $cite == '') {
+            // class provided but no cite
             $html .= '<q class="' . $class . '">' . $q . '</q>';
+          } else {
+            $html .= '<q class="' . $class . '" cite="' . $cite . '">' . $q . '</q>';
           }
           return $html;
         }
