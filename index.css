@@ -2,23 +2,57 @@
 	font-weight: bold;
 }
 
+.k-writer .ProseMirror cite {
+  color: var(--color-gray-700);
+  font-family: var(--font-mono);
+  font-style: italic;
+}
+
+div[data-theme="dark"] .k-writer .ProseMirror cite {
+	color: var(--color-gray-300);
+}
+
 .k-writer .ProseMirror dfn {
   font-family: monospace;
   font-style: normal;
 }
 
 .k-writer .ProseMirror ins {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--color-green-700);
+  color: var(--color-green-700);
   padding: 0 .2rem;
   text-decoration: none;
 }
 
+div[data-theme="dark"] .k-writer .ProseMirror ins {
+  border-bottom: 1px solid var(--color-green-4700);
+  color: var(--color-green-400);
+}
+
+.k-writer .ProseMirror mark {
+  background: var(--color-yellow-300);
+  padding: .2rem;
+}
+
+div[data-theme="dark"] .k-writer .ProseMirror mark {
+	background: var(--color-yellow-700);
+	color: var(--color-gray-100);
+}
+
 .k-writer .ProseMirror samp {
-  background: rgba(0,0,0,.1);
-  padding: 0 .2rem;
+  background: var(--color-blue-300);
+  font-family: var(--font-mono);
+  padding: .2rem;
+}
+
+div[data-theme="dark"] .k-writer .ProseMirror samp {
+	background: var(--color-blue-800);
 }
 
 .k-writer .ProseMirror span {
   font-variant: small-caps;
+  letter-spacing: 1px;
+  text-transform: lowercase;
 }
+
 

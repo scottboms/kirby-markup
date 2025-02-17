@@ -11,12 +11,12 @@
 use Kirby\Sane\Html;
 
 Html::$allowedTags['abbr'] = ['class','title'];
-Html::$allowedTags['cite'] = true;
+Html::$allowedTags['cite'] = ['class'];
 Html::$allowedTags['dfn'] = ['class','title'];
-Html::$allowedTags['ins'] = true;
-Html::$allowedTags['mark'] = true;
-Html::$allowedTags['q'] = ['cite'];
-Html::$allowedTags['s'] = true;
+Html::$allowedTags['ins'] = ['class'];
+Html::$allowedTags['mark'] = ['class'];
+Html::$allowedTags['q'] = ['class','cite'];
+Html::$allowedTags['s'] = ['class'];
 Html::$allowedTags['samp'] = ['class'];
 Html::$allowedTags['smallcaps'] = ['class','title'];
 

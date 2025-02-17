@@ -17,7 +17,7 @@
 </template>
 
 <script>
-//console.log('Citation Dialog loaded...');
+console.log('Citation Dialog loaded...');
 
 export default {
   name: "cite-dialog",
@@ -44,9 +44,9 @@ export default {
           placeholder: "Enter one or more CSS classes"
         },
         cite: {
-          label: "Cite",
+          label: "Citation",
           type: "text",
-          placeholder: "Enter a citation reference"
+          placeholder: "Enter a citation source"
         }
       }
     };

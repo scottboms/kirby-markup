@@ -1,6 +1,6 @@
 # Semantic Markup Kirbytags
 
-A collection of kirbytags for Textarea and Writer fields providing advanced options for semantic markup in the panel. Includes tags for: `abbr`, `cite`, `dfn`, `ins`, `mark`, `q`, `s`, `samp`, `sub`, `sup` along with a special shortcut for handling `small caps`.
+A collection of kirbytags for Textarea and marks for Writer fields providing advanced options for semantic markup in the panel. Includes tags for: `abbr`, `cite`, `dfn`, `ins`, `mark`, `q`, `s`, `samp`, `sub`, `sup` along with a special shortcut for handling `small caps`.
 
 ## Installation
 
@@ -47,11 +47,8 @@ The following Textarea and Writer Field marks are included. To enable these in t
           - ins
           - mark
           - q
-          - s
           - samp
           - smallcaps
-          - sub
-          - sup
 
 ### Optional Tag Attributes
 
