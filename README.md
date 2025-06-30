@@ -1,6 +1,6 @@
 # Semantic Markup Kirbytags
 
-A collection of kirbytags for Textarea and marks for Writer fields providing advanced options for semantic markup in the panel. Includes tags for: `abbr`, `cite`, `dfn`, `ins`, `mark`, `q`, `s`, `samp`, `sub`, `sup` along with a special shortcut for handling `small caps`.
+A collection of kirbytags for Textarea and marks for Writer fields providing advanced options for semantic markup in the panel. Includes tags for: `abbr`, `cite`, `del`, `dfn`, `ins`, `mark`, `q`, `s`, `samp`, `sub`, `sup` along with a special shortcut for handling `small caps`.
 
 ## Installation
 
@@ -27,6 +27,7 @@ The following Textarea and Writer Field marks are included. To enable these in t
       buttons:
         - abbr
         - cite
+        - del
         - dfn
         - ins
         - mark
@@ -43,6 +44,7 @@ The following Textarea and Writer Field marks are included. To enable these in t
         marks:
           - abbr
           - cite
+          - del
           - dfn
           - ins
           - mark
@@ -52,10 +54,12 @@ The following Textarea and Writer Field marks are included. To enable these in t
 
 ### Optional Tag Attributes
 
-All Textarea tags provide a convenience `class` attribute. The `abbr` and `dfn` tags also provide an optional `title` attribute per HTML markup standards. The `q` tag provides both a `class` and `cite` attributes.
+Most Textarea tags provide a convenience `class` attribute. The `abbr` and `dfn` tags also provide an optional `title` attribute per HTML markup standards. The `q` tag provides both a `class` and `cite` attributes and the `del` tag provides `cite` and `datetime` attributes.
 
 * `class`: A CSS class/classes to append to the element [optional]
 * `title`: A title attribute for `abbr`, `dfn`, and `` [optional]
+* `cite`: A citation attribute for `del` [recommended]
+* `datetime`: A date/time attribute for `del` [optional]
 
 ### [abbr](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr)
 
@@ -64,6 +68,10 @@ All Textarea tags provide a convenience `class` attribute. The `abbr` and `dfn` 
 ### [cite](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite)
 
 `(cite: Nineteen Eighty-Four class: markup__cite) by George Orwell`
+
+### [del](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del)
+
+`A (del: represents a range of text that has been deleted from a document)`
 
 ### [dfn](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dfn)
 

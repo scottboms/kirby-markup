@@ -13,6 +13,13 @@ export const textareaButtons = {
 			this.command('toggle', '(cite: ', ')');
 		}
 	},
+  'del': {
+		label: 'Deletion',
+		icon: 'del',
+		click: function() {
+			this.command('toggle', '(del: ', ' cite: datetime: )');
+		}
+  },
 	'dfn': {
 		label: 'Definition',
 		icon: 'dfn',

@@ -12,6 +12,12 @@ div[data-theme="dark"] .k-writer .ProseMirror cite {
 	color: var(--color-gray-300);
 }
 
+.k-writer .ProseMirror del {
+  background-color: var(--color-red-200);
+  color: var(--color-red-650);
+  padding: 0 .2rem;
+}
+
 .k-writer .ProseMirror dfn {
   font-family: monospace;
   font-style: normal;
@@ -31,7 +37,7 @@ div[data-theme="dark"] .k-writer .ProseMirror ins {
 
 .k-writer .ProseMirror mark {
   background: var(--color-yellow-300);
-  padding: .2rem;
+  padding: 0 .2rem;
 }
 
 div[data-theme="dark"] .k-writer .ProseMirror mark {

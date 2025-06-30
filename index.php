@@ -12,6 +12,7 @@ use Kirby\Sane\Html;
 
 Html::$allowedTags['abbr'] = ['class','title'];
 Html::$allowedTags['cite'] = ['class'];
+Html::$allowedTags['del'] = ['cite','datetime'];
 Html::$allowedTags['dfn'] = ['class','title'];
 Html::$allowedTags['ins'] = ['class'];
 Html::$allowedTags['mark'] = ['class'];
@@ -33,7 +34,7 @@ Kirby::plugin(
   info: [
     'homepage' => 'https://github.com/scottboms/kirby-markup'
   ],
-  version: '1.1.0',
+  version: '1.1.1',
   extends: [
     'tags' => [
       // Abbreviation
@@ -80,6 +81,32 @@ Kirby::plugin(
           }
           return $html;
         }
+      ],
+
+      // Deletion
+      'del' => [
+        'attr' => [
+          'cite',
+          'datetime'
+        ],
+        'html' => function($tag) {
+          $html = '';
+          // tag options
+          $del = $tag->del;
+          $cite = $tag->cite;
+          $datetime = $tag->datetime;
+
+          if($cite == '' && $datetime == '') {
+            // if no cite or datetime attributes
+            $html .= '<del>' . $del . '</del>';
+          } elseif($cite !== '' && $datetime == '') {
+            // cite provided but not datetime
+            $html .= '<del cite="' . $cite . '">' . $del . '</del>';
+          } else {
+            $html .= '<del cite="' . $cite . '" datetime="' . $datetime . '">' . $del . '</del>';
+          }
+          return $html;
+        },
       ],
 
       // Definition
