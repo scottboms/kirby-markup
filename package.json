@@ -3,7 +3,7 @@
   "description": "Advanced semantic markup for Textarea and Writer fields.",
   "author": "Scott Boms <plugins@scottboms.com>",
   "type": "kirby-plugin",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "MIT",
   "scripts": {
     "dev": "kirbyup serve src/index.js",

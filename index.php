@@ -21,12 +21,14 @@ Html::$allowedTags['s'] = ['class'];
 Html::$allowedTags['samp'] = ['class'];
 Html::$allowedTags['smallcaps'] = ['class','title'];
 
-use Composer\Semver\Semver;
-use Kirby\Cms\App as Kirby;
+use Kirby\Cms\App;
 
-// validate Kirby version
-if (Semver::satisfies(Kirby::version() ?? '0.0.0', '~4.0 || ~5.0') === false) {
-	throw new Exception('Kirby Remix Icons Plugin requires Kirby 4 or 5');
+// shamelessly borrowed from distantnative/retour-for-kirby
+if (
+	version_compare(App::version() ?? '0.0.0', '4.0.1', '<') === true ||
+	version_compare(App::version() ?? '0.0.0', '6.0.0', '>=') === true
+) {
+	throw new Exception('Semantic Markup requires Kirby v4 or v5');
 }
 
 Kirby::plugin(
@@ -34,7 +36,7 @@ Kirby::plugin(
   info: [
     'homepage' => 'https://github.com/scottboms/kirby-markup'
   ],
-  version: '1.1.1',
+  version: '1.1.2',
   extends: [
     'tags' => [
       // Abbreviation

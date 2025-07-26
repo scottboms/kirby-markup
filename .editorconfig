@@ -1,0 +1,14 @@
+[*.{css,js,json,html,php,html,md}]
+charset = utf-8
+indent_style = tab
+indent_size = 2
+end_of_line = lf
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+[package.json,.{editorconfig,yml}]
+indent_style = space
+indent_size = 2
