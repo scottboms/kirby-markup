@@ -17,7 +17,7 @@
 </template>
 
 <script>
-console.log('Citation Dialog loaded...');
+// console.log('Citation Dialog loaded...');
 
 export default {
   name: "cite-dialog",

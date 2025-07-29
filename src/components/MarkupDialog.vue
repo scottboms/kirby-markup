@@ -17,7 +17,7 @@
 </template>
 
 <script>
-console.log('Markup Dialog loaded...');
+// console.log('Markup Dialog loaded...');
 
 export default {
   name: "markup-dialog",
