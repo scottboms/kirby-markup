@@ -29,35 +29,35 @@ The following Textarea and Writer Field marks are included. To enable these in t
 
 ```yml
 text:
-	label: Content
-	type: textarea
-	buttons:
-		- abbr
-		- cite
-		- del
-		- dfn
-		- ins
-		- mark
-		- q
-		- s
-		- samp
-		- smallcaps
-		- sub
-		- sup
+  label: Content
+  type: textarea
+  buttons:
+    - abbr
+    - cite
+    - del
+    - dfn
+    - ins
+    - mark
+    - q
+    - s
+    - samp
+    - smallcaps
+    - sub
+    - sup
 
 description:
-	type: writer
-	inline: true
-	marks:
-		- abbr
-		- cite
-		- del
-		- dfn
-		- ins
-		- mark
-		- q
-		- samp
-		- smallcaps
+  type: writer
+  inline: true
+  marks:
+    - abbr
+    - cite
+    - del
+    - dfn
+    - ins
+    - mark
+    - q
+    - samp
+    - smallcaps
 ```
 
 ### Optional Tag Attributes
