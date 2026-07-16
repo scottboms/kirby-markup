@@ -10,19 +10,21 @@ export const Insert = {
   commands() {
     return {
       ins: () => {
-        panel.dialog.open({
+        const current = this.editor.getMarkAttrs("ins") || {};
+
+        this.$panel.dialog.open({
           component: 'class-dialog',
           props: {
             value: {
               // get values from the mark or null
-              class: this.editor.getMarkAttrs("ins").class || null
+              class: current.class || null
             }
           },
           on: {
             submit: (values) => {
               this.editor.command("toggleIns", values);
               console.log('submit', values);
-              window.panel.dialog.close();
+              this.$panel.dialog.close();
             },
             cancel: () => {
               this.editor.focus();

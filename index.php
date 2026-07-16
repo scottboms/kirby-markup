@@ -23,33 +23,31 @@ Html::$allowedTags['smallcaps'] = ['class','title'];
 
 use Kirby\Cms\App;
 
-// shamelessly borrowed from distantnative/retour-for-kirby
-if (
-	version_compare(App::version() ?? '0.0.0', '5.0.0', '<') === true ||
-	version_compare(App::version() ?? '6.0.0', '7.0.0', '>=') === true
-) {
-	throw new Exception('Semantic Markup requires Kirby v6 or v7');
+// kirby version compatibility check
+$version = App::version() ?? '0.0.0';
+
+if (version_compare($version, '6.0.0-alpha.1', '<') || version_compare($version, '8.0.0', '>=')) {
+  throw new Exception('Semantic Markup Tags requires Kirby v6');
 }
 
-Kirby::plugin(
-	name: 'scottboms/kirby-markup',
-	info: [
-		'homepage' => 'https://github.com/scottboms/kirby-markup'
+Kirby::plugin('scottboms/kirby-markup', [
+	'info' => [
+		'homepage' => 'https://github.com/scottboms/kirby-markup',
+		'license'  => 'MIT',
+		'version'  => '6.0.0',
 	],
-	version: '1.1.3',
-	extends: [
-		'tags' => [
-			'abbr' => require __DIR__ . '/tags/abbr.php',
-			'cite' => require __DIR__ . '/tags/cite.php',
-			'del' => require __DIR__ . '/tags/del.php',
-			'dfn' => require __DIR__ . '/tags/dfn.php',
-			'ins' => require __DIR__ . '/tags/ins.php',
-			'mark' => require __DIR__ . '/tags/mark.php',
-			'q' => require __DIR__ . '/tags/quote.php',
-			'samp' => require __DIR__ . '/tags/samp.php',
-			'smallcaps' => require __DIR__ . '/tags/smallcaps.php',
-			's' => require __DIR__ . '/tags/strikethrough.php',
-			'sub' => require __DIR__ . '/tags/sub.php',
-			'sup' => require __DIR__ . '/tags/sup.php',
-		]
+	'tags' => [
+		'abbr' => require __DIR__ . '/tags/abbr.php',
+		'cite' => require __DIR__ . '/tags/cite.php',
+		'del' => require __DIR__ . '/tags/del.php',
+		'dfn' => require __DIR__ . '/tags/dfn.php',
+		'ins' => require __DIR__ . '/tags/ins.php',
+		'mark' => require __DIR__ . '/tags/mark.php',
+		'q' => require __DIR__ . '/tags/quote.php',
+		'samp' => require __DIR__ . '/tags/samp.php',
+		'smallcaps' => require __DIR__ . '/tags/smallcaps.php',
+		's' => require __DIR__ . '/tags/strikethrough.php',
+		'sub' => require __DIR__ . '/tags/sub.php',
+		'sup' => require __DIR__ . '/tags/sup.php',
+	]
 ]);

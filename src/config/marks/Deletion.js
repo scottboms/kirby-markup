@@ -10,20 +10,22 @@ export const Deletion = {
   commands() {
     return {
       del: () => {
-        panel.dialog.open({
+        const current = this.editor.getMarkAttrs("del") || {};
+
+        this.$panel.dialog.open({
           component: 'datetime-dialog',
           props: {
             value: {
               // get values from the mark or null
-              cite: this.editor.getMarkAttrs("del").cite || null,
-              datetime: this.editor.getMarkAttrs("del").datetime || null
+              cite: current.cite || null,
+              datetime: currrent.datetime || null
             }
           },
           on: {
             submit: (values) => {
               this.editor.command("toggleDel", values);
               console.log('submit', values);
-              window.panel.dialog.close();
+              this.$panel.dialog.close();
             },
             cancel: () => {
               this.editor.focus();

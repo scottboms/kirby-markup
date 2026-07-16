@@ -10,20 +10,26 @@ export const Abbreviation = {
   commands() {
     return {
       abbr: () => {
-        panel.dialog.open({
+        // cache mark attrs once
+        const current = this.editor.getMarkAttrs("abbr") || {};
+
+        // prefer the injected panel api over window.panel
+        // in kirby panel code, this is the common pattern:
+        // this.$panel.dialog.open(...) this.$panel.dialog.close()
+        this.$panel.dialog.open({
           component: 'markup-dialog',
           props: {
             value: {
               // get values from the mark or null
-              class: this.editor.getMarkAttrs("abbr").class || null,
-              title: this.editor.getMarkAttrs("abbr").title || null
+              class: current.class ?? null,
+              title: current.title ?? null
             }
           },
           on: {
             submit: (values) => {
               this.editor.command("toggleAbbr", values);
               // console.log('submit', values);
-              window.panel.dialog.close();
+              this.$panel.dialog.close();
             },
             cancel: () => {
               this.editor.focus();
@@ -42,7 +48,7 @@ export const Abbreviation = {
           title: attrs.title || null
         };
 
-        if (cleanAttrs.class !== null || cleanAttrs.title?.length > 0) {
+        if (cleanAttrs.class !== null || (cleanAttrs.title?.length ?? 0) > 0) {
           return this.update(cleanAttrs);
         }
       },
@@ -57,7 +63,7 @@ export const Abbreviation = {
           title: attrs.title || null
         };
 
-        if (cleanAttrs.class !== null || cleanAttrs.title?.length > 0) {
+        if (cleanAttrs.class !== null || (cleanAttrs.title?.length ?? 0) > 0) {
           // console.log('insert element with class:', cleanAttrs.class, 'and title:', cleanAttrs.title);
           this.editor.command("insertAbbr", cleanAttrs);
         } else {
@@ -90,13 +96,8 @@ export const Abbreviation = {
       toDOM: (node) => {
         const attrs = {};
         // explicitly check and assign attributes
-        if (node.attrs.class !== null) {
-          attrs.class = node.attrs.class;
-        }
-
-        if (node.attrs.title) {
-          attrs.title = node.attrs.title;
-        }
+        if (node.attrs.class !== null) attrs.class = node.attrs.class;
+        if (node.attrs.title) attrs.title = node.attrs.title;
 
         // console.log('attributes added to element', attrs);
         return ['abbr', attrs, 0];

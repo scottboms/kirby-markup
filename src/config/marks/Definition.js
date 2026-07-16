@@ -10,20 +10,22 @@ export const Definition = {
   commands() {
     return {
       dfn: () => {
-        panel.dialog.open({
+        const current = this.editor.getMarkAttrs("dfn") || {};
+
+        this.$panel.dialog.open({
           component: 'markup-dialog',
           props: {
             value: {
               // get values from the mark or null
-              class: this.editor.getMarkAttrs("dfn").class || null,
-              title: this.editor.getMarkAttrs("dfn").title || null
+              class: current.class || null,
+              title: current.title || null
             }
           },
           on: {
             submit: (values) => {
               this.editor.command("toggleDfn", values);
               console.log('submit', values);
-              window.panel.dialog.close();
+              this.$panel.dialog.close();
             },
             cancel: () => {
               this.editor.focus();

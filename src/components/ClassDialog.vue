@@ -6,12 +6,12 @@
     :submit-button="true"
     :cancel-button="true"
     size="small"
-    @submit="$emit('submit')"
+    @submit="$emit('submit', value)"
     @cancel="$emit('cancel')">
     <k-form
       :fields="fields"
       v-bind="$props"
-      :value="values"
+      :value="value"
       @input="$emit('input', $event)" />
   </k-dialog>
 </template>
@@ -21,6 +21,7 @@
 
 export default {
   name: "class-dialog",
+  emits: ["submit", "cancel", "input"],
   props: {
     editor: {
       type: Object,
@@ -47,4 +48,4 @@ export default {
   }
 };
 </script>
-  
+

@@ -10,19 +10,21 @@ export const Sample = {
   commands() {
     return {
       samp: () => {
-        panel.dialog.open({
+        const current = this.editor.getMarkAttrs("samp") || {};
+
+        this.$panel.dialog.open({
           component: 'class-dialog',
           props: {
             value: {
               // get values from the mark or null
-              class: this.editor.getMarkAttrs("samp").class || null
+              class: current.class || null
             }
           },
           on: {
             submit: (values) => {
               this.editor.command("toggleSample", values);
               console.log('submit', values);
-              window.panel.dialog.close();
+              this.$panel.dialog.close();
             },
             cancel: () => {
               this.editor.focus();

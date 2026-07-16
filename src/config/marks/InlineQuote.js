@@ -10,20 +10,22 @@ export const InlineQuote = {
   commands() {
     return {
       q: () => {
-        panel.dialog.open({
+        const current = this.editor.getMarkAttrs("q") || {};
+
+        this.$panel.dialog.open({
           component: 'cite-dialog',
           props: {
             value: {
               // get values from the mark or null
-              class: this.editor.getMarkAttrs("q").class || null,
-              cite: this.editor.getMarkAttrs("q").cite || null
+              class: current.class || null,
+              cite: current.cite || null
             }
           },
           on: {
             submit: (values) => {
               this.editor.command("toggleQuote", values);
               // console.log('submit', values);
-              window.panel.dialog.close();
+              this.$panel.dialog.close();
             },
             cancel: () => {
               this.editor.focus();
