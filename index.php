@@ -25,10 +25,10 @@ use Kirby\Cms\App;
 
 // shamelessly borrowed from distantnative/retour-for-kirby
 if (
-	version_compare(App::version() ?? '0.0.0', '4.0.1', '<') === true ||
-	version_compare(App::version() ?? '0.0.0', '6.0.0', '>=') === true
+	version_compare(App::version() ?? '0.0.0', '6.0.0', '<') === true ||
+	version_compare(App::version() ?? '0.0.0', '7.0.0', '>=') === true
 ) {
-	throw new Exception('Semantic Markup requires Kirby v4 or v5');
+	throw new Exception('Semantic Markup requires Kirby v6');
 }
 
 Kirby::plugin(
@@ -36,7 +36,7 @@ Kirby::plugin(
 	info: [
 		'homepage' => 'https://github.com/scottboms/kirby-markup'
 	],
-	version: '1.1.4',
+	version: '6.0.0',
 	extends: [
 		'tags' => [
 			'abbr' => require __DIR__ . '/tags/abbr.php',

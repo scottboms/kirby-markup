@@ -118,8 +118,7 @@ Most Textarea tags provide a convenience `class` attribute. The `abbr` and `dfn`
 
 ## Compatibility
 
-* Kirby 4.x
-* Kirby 5.x
+* Kirby 6.x (Plugin version 6.x)
 
 ## Disclaimer
 
