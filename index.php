@@ -23,20 +23,22 @@ Html::$allowedTags['smallcaps'] = ['class','title'];
 
 use Kirby\Cms\App;
 
-// shamelessly borrowed from distantnative/retour-for-kirby
+$version = App::version() ?? '0.0.0';
 if (
-	version_compare(App::version() ?? '0.0.0', '6.0.0', '<') === true ||
-	version_compare(App::version() ?? '0.0.0', '7.0.0', '>=') === true
+    version_compare($version, '6.0.0-beta.1', '<') ||
+    version_compare($version, '7.0.0', '>=')
 ) {
-	throw new Exception('Semantic Markup requires Kirby v6');
+    throw new Exception('Semantic Markup requires Kirby 6');
 }
 
-Kirby::plugin(
-	name: 'scottboms/kirby-markup',
+Kirby::plugin('scottboms/kirby-markup',
 	info: [
-		'homepage' => 'https://github.com/scottboms/kirby-markup'
+		'homepage' => 'https://github.com/scottboms/kirby-markup',
+		'version' => '6.0.0',
+		'license' => 'MIT',
+		'authors' => [[ 'name' => 'Scott Boms']]
 	],
-	version: '6.0.0',
+
 	extends: [
 		'tags' => [
 			'abbr' => require __DIR__ . '/tags/abbr.php',

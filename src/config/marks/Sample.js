@@ -1,99 +1,132 @@
 export const Sample = {
-  // sample text <samp> tag with class attribute
-  get button() {
-    return {
-      icon: 'samp',
-      label: 'Sample Text'
-    }
-  },
+	// sample text <samp> tag with class attribute
+	get button() {
+		return {
+			icon: 'samp',
+			label: 'Sample Text'
+		}
+	},
 
-  commands() {
-    return {
-      samp: () => {
-        panel.dialog.open({
-          component: 'class-dialog',
-          props: {
-            value: {
-              // get values from the mark or null
-              class: this.editor.getMarkAttrs("samp").class || null
-            }
-          },
-          on: {
-            submit: (values) => {
-              this.editor.command("toggleSample", values);
-              console.log('submit', values);
-              window.panel.dialog.close();
-            },
-            cancel: () => {
-              this.editor.focus();
-            }
-          }
-        });
-      },
+	commands() {
+		return {
+			samp: () => {
+				const { state } = this.editor;
+				const { selection } = state;
+				const markType = state.schema.marks.samp;
 
-      insertSample: (attrs = {}) => {
-        // console.log('insert called with attrs:', attrs);
-        const { selection } = this.editor.state;
+				let attrs = {};
 
-        if (
-					selection.empty &&
-					this.editor.activeMarks.includes("samp") === false
-				) {
-					this.editor.insertText(attrs.class, false);
+				// First check marks at the cursor
+				if (selection.empty) {
+					const marks = selection.$from.marks();
+					const mark = marks.find(mark => mark.type === markType);
+
+					if (mark) {
+						attrs = mark.attrs;
+					}
+				} else {
+					// Find the samp mark within the selection
+					state.doc.nodesBetween(
+						selection.from,
+						selection.to,
+						(node) => {
+							if (!node.isText) {
+								return;
+							}
+
+							const mark = node.marks.find(
+								mark => mark.type === markType
+							);
+
+							if (mark) {
+								attrs = mark.attrs;
+								return false;
+							}
+						}
+					);
 				}
 
-				if (attrs.class) {
-					return this.update(attrs);
+				panel.dialog.open({
+					component: 'class-dialog',
+					props: {
+						value: {
+							class: attrs.class ?? ""
+						}
+					},
+					on: {
+						submit: (values) => {
+							//console.log("Dialog submitted:", values);
+							panel.dialog.close();
+							this.editor.command("toggleSample", values);
+						},
+						cancel: () => {
+							this.editor.focus();
+						}
+					}
+				});
+			},
+
+			insertSample: (attrs = {}) => {
+        const cleanAttrs = {
+					class: attrs.class ?? null
+				};
+
+				if (cleanAttrs.class !== null) {
+					return this.update(cleanAttrs);
 				}
-      },
+			},
 
-      removeSample: () => {
-        return this.remove();
-      },
+			removeSample: () => {
+				return this.remove();
+			},
 
-      toggleSample: (attrs = {}) => {
-        if(attrs.class?.length > 0) {
-          this.editor.command("insertSample", attrs);
-        } else {
-          this.editor.command("removeSample");
-        }
+			toggleSample: (attrs = {}) => {
+				const cleanAttrs = {
+					class: attrs.class ?? null
+				};
+
+				if (cleanAttrs.class !== null) {
+					return this.editor.command("insertSample", cleanAttrs);
+				}
+
+				return this.editor.command("removeSample");
       }
     };
   },
 
-  get defaults() {
-    return {
-      class: null
-    }
-  },
+	get defaults() {
+		return {
+			class: null
+		}
+	},
 
-  get name() {
-    return 'samp'
-  },
+	get name() {
+		return 'samp'
+	},
 
-  get schema() {
-    return {
-      attrs: {
-        class: { default: null }
-      },
-      inclusive: false,
-      priority: 60,
-      toDOM: (node) => {
-        const attrs = {};
-        // explicitly check and assign attributes
-        if (node.attrs.class !== null) {
-          attrs.class = node.attrs.class;
-        }
+	get schema() {
+		return {
+			attrs: {
+				class: { default: null }
+			},
+			inclusive: false,
+			priority: 60,
+			toDOM: (node) => {
+				const attrs = {};
+				// explicitly check and assign attributes
+				if (node.attrs.class !== null) {
+					attrs.class = node.attrs.class;
+				}
 
-        // console.log('attributes added to element', attrs);
-        return ['samp', attrs, 0];
-      },
-      parseDOM: [{
-        tag: 'samp',
-        getAttrs: (dom) => ({
-          class: dom.getAttribute('class') || null
-        })
-      }],
-    };
-  }
+				// console.log('attributes added to element', attrs);
+				return ['samp', attrs, 0];
+			},
+			parseDOM: [{
+				tag: 'samp',
+				getAttrs: (dom) => ({
+					class: dom.getAttribute('class') || null
+				})
+			}],
+		};
+	}
 };

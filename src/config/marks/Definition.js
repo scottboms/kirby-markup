@@ -1,113 +1,143 @@
 export const Definition = {
-  // definition <dfn> tag
-  get button() {
-    return {
-      icon: 'dfn',
-      label: 'Definition'
-    }
-  },
+	// definition <dfn> tag
+	get button() {
+		return {
+			icon: 'dfn',
+			label: 'Definition'
+		}
+	},
 
-  commands() {
-    return {
-      dfn: () => {
-        panel.dialog.open({
-          component: 'markup-dialog',
-          props: {
-            value: {
-              // get values from the mark or null
-              class: this.editor.getMarkAttrs("dfn").class || null,
-              title: this.editor.getMarkAttrs("dfn").title || null
-            }
-          },
-          on: {
-            submit: (values) => {
-              this.editor.command("toggleDfn", values);
-              console.log('submit', values);
-              window.panel.dialog.close();
-            },
-            cancel: () => {
-              this.editor.focus();
-            }
-          }
-        });
-      },
+	commands() {
+		return {
+			dfn: () => {
+				const { state } = this.editor;
+				const { selection } = state;
+				const markType = state.schema.marks.dfn;
 
-      insertDfn: (attrs = {}) => {
-        // console.log('insert called with attrs:', attrs);
-        const { selection } = this.editor.state;
+				let attrs = {};
 
-        // clean up attributes to ensure both class and title are handled properly
-        const cleanAttrs = {
-          class: attrs.class !== undefined ? attrs.class : null,
-          title: attrs.title || null
-        };
+				// First check marks at the cursor
+				if (selection.empty) {
+					const marks = selection.$from.marks();
+					const mark = marks.find(mark => mark.type === markType);
 
-        if (cleanAttrs.class !== null || cleanAttrs.title?.length > 0) {
-          return this.update(cleanAttrs);
-        }
-      },
+					if (mark) {
+						attrs = mark.attrs;
+					}
+				} else {
+					// Find the dfn mark within the selection
+					state.doc.nodesBetween(
+						selection.from,
+						selection.to,
+						(node) => {
+							if (!node.isText) {
+								return;
+							}
 
-      removeDfn: () => {
-        return this.remove();
-      },
+							const mark = node.marks.find(
+								mark => mark.type === markType
+							);
 
-      toggleDfn: (attrs = {}) => {
-        const cleanAttrs = {
-          class: attrs.class !== undefined ? attrs.class : null,
-          title: attrs.title || null
-        };
+							if (mark) {
+								attrs = mark.attrs;
+								return false;
+							}
+						}
+					);
+				}
 
-        if (cleanAttrs.class !== null || cleanAttrs.title?.length > 0) {
-          // console.log('insert element with class:', cleanAttrs.class, 'and title:', cleanAttrs.title);
-          this.editor.command("insertDfn", cleanAttrs);
-        } else {
-          // console.log('removing element');
-          this.editor.command("removeDfn");
-        }
-      }
-    };
-  },
+				panel.dialog.open({
+					component: "markup-dialog",
+					props: {
+						value: {
+							title: attrs.title ?? "",
+							class: attrs.class ?? ""
+						}
+					},
+					on: {
+						submit: (values) => {
+							//console.log("Dialog submitted:", values);
+							panel.dialog.close();
+							this.editor.command("toggleDfn", values);
+						},
+						cancel: () => {
+							this.editor.focus();
+						}
+					}
+				});
+			},
 
-  get defaults() {
-    return {
-      class: null,
-      title: null
-    }
-  },
+			insertDfn: (attrs = {}) => {
+				const cleanAttrs = {
+					title: attrs.title ?? null,
+					class: attrs.class ?? null
+				};
 
-  get name() {
-    return 'dfn'
-  },
+				if (cleanAttrs.title !== null || cleanAttrs.class !== null) {
+					return this.update(cleanAttrs);
+				}
+			},
 
-  get schema() {
-    return {
-      attrs: {
-        class: { default: null },
-        title: { default: null }
-      },
-      inclusive: false,
-      priority: 61,
-      toDOM: (node) => {
-        const attrs = {};
-        // explicitly check and assign attributes
-        if (node.attrs.class !== null) {
-          attrs.class = node.attrs.class;
-        }
+			removeDfn: () => {
+				return this.remove();
+			},
 
-        if (node.attrs.title) {
-          attrs.title = node.attrs.title;
-        }
+			toggleDfn: (attrs = {}) => {
+				const cleanAttrs = {
+					title: attrs.title ?? null,
+					class: attrs.class ?? null
+				};
 
-        // console.log('attributes added to element', attrs);
-        return ['dfn', attrs, 0];
-      },
-      parseDOM: [{
-        tag: 'dfn',
-        getAttrs: (dom) => ({
-          class: dom.getAttribute('class') || null,
-          title: dom.getAttribute('title') || null
-        })
-      }],
-    };
-  }
+				if (cleanAttrs.title !== null || cleanAttrs.class !== null) {
+					return this.editor.command("insertDfn", cleanAttrs);
+				}
+
+				return this.editor.command("removeDfn");
+			}
+		};
+	},
+
+	get defaults() {
+		return {
+			class: null,
+			title: null
+		}
+	},
+
+	get name() {
+		return 'dfn'
+	},
+
+	get schema() {
+		return {
+			attrs: {
+				class: { default: null },
+				title: { default: null }
+			},
+			inclusive: false,
+			priority: 61,
+			toDOM: (node) => {
+				const attrs = {};
+				// explicitly check and assign attributes
+				if (node.attrs.title) {
+					attrs.title = node.attrs.title;
+				}
+
+				if (node.attrs.class !== null) {
+					attrs.class = node.attrs.class;
+				}
+
+				// console.log('attributes added to element', attrs);
+				return ['dfn', attrs, 0];
+			},
+
+			parseDOM: [{
+				tag: 'dfn',
+				getAttrs: (dom) => ({
+					class: dom.getAttribute('class') || null,
+					title: dom.getAttribute('title') || null
+				})
+			}],
+		};
+	}
 };
