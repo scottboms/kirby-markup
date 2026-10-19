@@ -8,6 +8,7 @@
  * @license MIT
 **/
 
+use Kirby\Cms\App;
 use Kirby\Sane\Html;
 
 Html::$allowedTags['abbr'] = ['class','title'];
@@ -20,8 +21,6 @@ Html::$allowedTags['q'] = ['class','cite'];
 Html::$allowedTags['s'] = ['class'];
 Html::$allowedTags['samp'] = ['class'];
 Html::$allowedTags['smallcaps'] = ['class','title'];
-
-use Kirby\Cms\App;
 
 $version = App::version() ?? '0.0.0';
 if (
