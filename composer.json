@@ -15,8 +15,14 @@
     "source": "https://github.com/scottboms/kirby-markup"
   },
   "require": {
-    "php": ">=8.3.0 <8.6.0",
-    "getkirby/cms": "^6.0",
-    "getkirby/composer-installer": "^1.1"
+    "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
+    "getkirby/composer-installer": "^1.2"
+  },
+  "extra": {
+		"kirby": {
+			"compatible": "^6.0"
+		},
+    "installer-name": "kirby-markup",
+    "kirby-cms-path": "kirby"
   }
 }
