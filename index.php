@@ -36,7 +36,7 @@ Kirby::plugin(
 	info: [
 		'homepage' => 'https://github.com/scottboms/kirby-markup'
 	],
-	version: '1.1.4',
+	version: '1.1.5',
 	extends: [
 		'tags' => [
 			'abbr' => require __DIR__ . '/tags/abbr.php',
